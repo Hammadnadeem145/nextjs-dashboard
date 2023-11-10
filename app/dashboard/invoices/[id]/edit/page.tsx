@@ -8,6 +8,11 @@ export default async function Page({ params }: { params: { id: string } }) {
         fetchInvoiceById(id),
         fetchCustomers(),
     ]);
+       // Check if invoice is undefined
+       if (!invoice) {
+        // Handle the case where the invoice is not found, e.g., redirect or show an error message
+        return <div>Invoice not found</div>;
+    }
     return (
         <main>
             <Breadcrumbs
