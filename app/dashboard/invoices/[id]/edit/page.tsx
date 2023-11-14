@@ -1,6 +1,8 @@
 import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
+import { updateInvoice } from '@/app/lib/actions';
 
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
@@ -10,8 +12,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     ]);
        // Check if invoice is undefined
        if (!invoice) {
-        // Handle the case where the invoice is not found, e.g., redirect or show an error message
-        return <div>Invoice not found</div>;
+        notFound();
     }
     return (
         <main>
