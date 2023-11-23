@@ -3,6 +3,12 @@ import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
 import { notFound } from 'next/navigation';
 import { updateInvoice } from '@/app/lib/actions';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+    title: 'Edit Invoice',
+}
 
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
@@ -10,8 +16,8 @@ export default async function Page({ params }: { params: { id: string } }) {
         fetchInvoiceById(id),
         fetchCustomers(),
     ]);
-       // Check if invoice is undefined
-       if (!invoice) {
+    // Check if invoice is undefined
+    if (!invoice) {
         notFound();
     }
     return (
